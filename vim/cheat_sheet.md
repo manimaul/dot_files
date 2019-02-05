@@ -61,11 +61,11 @@ d = cut
 :reg
 
 # [Surround](https://github.com/tpope/vim-surround)
-`ysiw` -> `[` = surround word with []\s
-`yss` -> `( ` = surround ()\s
-`yss` -> `b` = surround ()\s 
-`ds` -> `[` = delete surrounding []\s
-`dst` = delete surrounding tag such as `<p><\p>`\s
-`cs"'` = change surround to '\s
+`ysiw` -> `[` = surround word with []\s\s
+`yss` -> `( ` = surround ()\s\s
+`yss` -> `b` = surround ()\s\s
+`ds` -> `[` = delete surrounding []\s\s
+`dst` = delete surrounding tag such as `<p><\p>`\s\s
+`cs"'` = change surround to '\s\s
 `V` -> `S<p>` surround visual selection with `<p></p>`  
 

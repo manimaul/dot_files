@@ -46,18 +46,25 @@ simlink() {
 	ln -s $DIR/vimrc $HOME/.vimrc
 }
 
+usage() {
+	echo "link|colors|all|help"
+}
+
 case $1 in
-	"link")
+"link")
 	simlink
-	;;
-	"colors")
+;;
+"colors")
 	colors
-	;;
-	*)
+;;
+"all")
 	install_plugins
 	simlink
 	colors
-	;;
+;;
+*)
+	usage
+;;
 esac
 
 

@@ -11,15 +11,17 @@ set number
 set nonumber
 ```
 
+
 # Esc
 `imap jj <esc>`
+
 
 # Navigation
 j,l,i,k = move left,up,down 
 
-g = move to top of document
+gg = move to top of document
 G = move to bottom of document
-NG = move to Nth line
+5G = move to 5th line
 
 H = move to top of screen
 L = move to bottom of screen
@@ -35,7 +37,35 @@ B = previous WORD
 w = next word
 W = next WORD
 
+# [netrw](https://shapeshed.com/vim-netrw/)
+:Ex - explor in current window
+:Vex - explore in a vertical window
+:Sex - explore in a horizontal window
+
+
+# Panes
+ctrl w
+
+
 # Undo
 u = undo
 c-r = redo
+
+
+# Copy / Paste
+y = yank
+d = cut
+
+
+# [Registers](https://www.brianstorti.com/vim-registers/)
+:reg
+
+# [Surround](https://github.com/tpope/vim-surround)
+`ysiw` -> `[` = surround word with []
+`yss` -> `( ` = surround ()
+`yss` -> `b` = surround ()
+`ds` -> `[` = delete surrounding []
+`dst` = delete surrounding tag such as `<p><\p>`
+`cs"'` = change surround to '
+`V` -> `S<p>` surround visual selection with `<p></p>`
 

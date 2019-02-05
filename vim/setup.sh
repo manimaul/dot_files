@@ -19,12 +19,15 @@ install_plugins() {
 	echo "installing rust vim"
 	git clone --depth=1 https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim
 
-	echo "installing hybrid colors"
-	mkdir -p ~/vim/colors
-	cp $DIR/colors/hybrid.vim
 
 	echo "installing surround"
 	git clone https://tpope.io/vim/surround.git ~/.vim/bundle/surround
+}
+
+colors() {
+	echo "installing hybrid colors"
+	mkdir -p ~/.vim/colors
+	cp $DIR/colors/hybrid.vim ~/.vim/colors/hybrid.vim
 }
 
 simlink() {
@@ -44,12 +47,16 @@ simlink() {
 }
 
 case $1 in
-	link)
+	"link")
 	simlink
+	;;
+	"colors")
+	colors
 	;;
 	*)
 	install_plugins
 	simlink
+	colors
 	;;
 esac
 

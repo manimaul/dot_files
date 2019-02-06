@@ -1,0 +1,10 @@
+[user]
+	name = manimaul
+	email = manimaul@gmail.com
+[core]
+	editor = vim
+[alias]
+	ld = log --decorate
+	poh = push origin HEAD
+	puh = push upstream HEAD
+

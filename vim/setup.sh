@@ -19,6 +19,11 @@ install_plugins() {
 	echo "installing rust vim"
 	git clone --depth=1 https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim
 
+  echo "installing vim-fugitive"
+  git clone https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive.vim
+
+  echo "installing vim-gitgutter"
+  git clone git://github.com/airblade/vim-gitgutter.git ~/.vim/bundle/vim-gitgutter.vim
 
 	echo "installing surround"
 	git clone https://tpope.io/vim/surround.git ~/.vim/bundle/surround

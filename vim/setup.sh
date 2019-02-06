@@ -33,7 +33,7 @@ colors() {
 simlink() {
 	echo "symlinking .vimrc"
 	vimrc="$HOME/.vimrc"
-	if [ -e "$vimrc" ]; then
+	if [[ -e "$vimrc" || -L "$vimrc" ]]; then
 	    if [ ! -L "$vimrc" ];  then
 		echo "backing up ~/.vimrc"
 		# not a symlink

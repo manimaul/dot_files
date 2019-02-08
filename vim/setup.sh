@@ -9,15 +9,15 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
 install_plugins() {
-	echo "installing pathogen"
-	mkdir -p ~/.vim/autoload ~/.vim/bundle 
-	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+  echo "installing pathogen"
+  mkdir -p ~/.vim/autoload ~/.vim/bundle 
+  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
-	echo "installing airline"
-	git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
+  echo "installing airline"
+  git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
 
-	echo "installing rust vim"
-	git clone --depth=1 https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim
+  echo "installing rust vim"
+  git clone --depth=1 https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim
 
   echo "installing vim-fugitive"
   git clone https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive.vim
@@ -25,14 +25,14 @@ install_plugins() {
   echo "installing vim-gitgutter"
   git clone git://github.com/airblade/vim-gitgutter.git ~/.vim/bundle/vim-gitgutter.vim
 
-	echo "installing surround"
-	git clone https://tpope.io/vim/surround.git ~/.vim/bundle/surround
+  echo "installing surround"
+  git clone https://tpope.io/vim/surround.git ~/.vim/bundle/surround
 }
 
 colors() {
-	echo "installing hybrid colors"
-	mkdir -p ~/.vim/colors
-	cp $DIR/colors/hybrid.vim ~/.vim/colors/hybrid.vim
+  echo "installing hybrid colors"
+  mkdir -p ~/.vim/colors
+  cp $DIR/colors/hybrid.vim ~/.vim/colors/hybrid.vim
 }
 
 simlink() {
@@ -49,6 +49,7 @@ simlink() {
 	fi
 
 	ln -s $DIR/vimrc $HOME/.vimrc
+	ln -s $DIR/vimrc $HOME/.ideavimrc
 }
 
 usage() {
@@ -71,5 +72,4 @@ case $1 in
 	usage
 ;;
 esac
-
 

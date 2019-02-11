@@ -102,3 +102,8 @@ When replacing:
 \0 inserts the text matched by the entire pattern
 \1 inserts the text of the first backreference. \2 inserts the second backreference, and so on.
 ```
+
+# Spelling
+
+`set spell` enables spelling highlighting
+`set nospell` disables spelling highlighting

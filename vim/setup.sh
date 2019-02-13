@@ -25,8 +25,24 @@ install_plugins() {
   echo "installing vim-gitgutter"
   git clone git://github.com/airblade/vim-gitgutter.git ~/.vim/bundle/vim-gitgutter.vim
 
-  echo "installing surround"
-  git clone https://tpope.io/vim/surround.git ~/.vim/bundle/surround
+	echo "installing surround"
+	git clone https://tpope.io/vim/surround.git ~/.vim/bundle/surround
+
+  # todo: syntastic https://github.com/vim-syntastic/syntastic
+  # todo: nerdtree   https://github.com/vim-syntastic/syntastic
+}
+
+install_ycm() {
+  echo "installing ycm"
+  if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    echo "installing vim-gtk3 for vim+python3"
+    sudo apt-get install vim-gtk3
+  fi
+  git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/ycm.vim
+  pushd ~/.vim/bundle/ycm.vim/
+  git submodule update --init --recursive
+  python3 install.py --go-completer --rust-completer --clang-completer
+  popd
 }
 
 colors() {
@@ -53,7 +69,7 @@ simlink() {
 }
 
 usage() {
-	echo "link|colors|all|help"
+	echo "link|colors|all|ycm|help"
 }
 
 case $1 in
@@ -63,8 +79,12 @@ case $1 in
 "colors")
 	colors
 ;;
+"ycm")
+  install_ycm
+;;
 "all")
 	install_plugins
+  install_ycm
 	simlink
 	colors
 ;;

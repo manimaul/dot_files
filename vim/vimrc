@@ -15,8 +15,12 @@ execute pathogen#infect()
 filetype plugin indent on
 
 " Rust
-let g:rust_clip_command = 'xclip -selection clipboard'
-"  let g:rust_clip_command = 'pbcopy'
+if system("uname") == "Linux"
+  let g:rust_clip_command = 'xclip -selection clipboard'
+endif
+if system("uname") == "Darwin"
+  let g:rust_clip_command = 'pbcopy'
+endif
 
 " Escape
 imap jj <esc>

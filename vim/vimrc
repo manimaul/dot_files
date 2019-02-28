@@ -1,9 +1,4 @@
-" Turn on syntax highlighting
-syntax on
-
-" Show line numbers
-set number
-" set nonumber
+source $HOME/.ideavimrc
 
 " https://github.com/w0ong/vim-hybrid
 colorscheme hybrid
@@ -21,9 +16,6 @@ endif
 if system("uname") == "Darwin"
   let g:rust_clip_command = 'pbcopy'
 endif
-
-" Escape
-imap jj <esc>
 
 " Surround
 let b:surround_indent = 0
@@ -61,13 +53,3 @@ map <silent> <C-E> :call ToggleVExplorer()<CR>
 " Change dir to the current buffer when opening files
 set autochdir
 
-filetype plugin indent on
-" show existing tab with 2 spaces width
-set tabstop=2
-" when indenting with '>', use 2 spaces width
-set shiftwidth=2
-" On pressing tab, insert 2 spaces
-set expandtab
-
-" Spelling
-set spell

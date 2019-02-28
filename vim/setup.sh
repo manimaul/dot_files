@@ -8,25 +8,27 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
+install_plugin() {
+  plugin_repo=$1
+  plugin_dir=$2
+  if [[ ! -d $plugin_dir ]]; then
+    echo "installing $1"
+    git clone --depth=1 $plugin_repo $plugin_dir
+  fi
+}
+
 install_plugins() {
-  echo "installing pathogen"
-  mkdir -p ~/.vim/autoload ~/.vim/bundle 
-  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+  if [[ ! -d ~/.vim/autoload ]]; then
+    echo "installing pathogen"
+    mkdir -p ~/.vim/autoload ~/.vim/bundle 
+    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+  fi
 
-  echo "installing airline"
-  git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
-
-  echo "installing rust vim"
-  git clone --depth=1 https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim
-
-  echo "installing vim-fugitive"
-  git clone https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive.vim
-
-  echo "installing vim-gitgutter"
-  git clone git://github.com/airblade/vim-gitgutter.git ~/.vim/bundle/vim-gitgutter.vim
-
-	echo "installing surround"
-	git clone https://tpope.io/vim/surround.git ~/.vim/bundle/surround
+  install_plugin https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
+  install_plugin https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim
+  install_plugin https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive.vim
+  install_plugin git://github.com/airblade/vim-gitgutter.git ~/.vim/bundle/vim-gitgutter.vim
+  install_plugin https://tpope.io/vim/surround.git ~/.vim/bundle/surround
 
   # todo: syntastic https://github.com/vim-syntastic/syntastic
   # todo: nerdtree   https://github.com/vim-syntastic/syntastic
@@ -37,6 +39,10 @@ install_ycm() {
   if [[ "$OSTYPE" == "linux-gnu" ]]; then
     echo "installing vim-gtk3 for vim+python3"
     sudo apt-get install vim-gtk3
+  fi
+  if [[ "$OSTYPE" == darwin* ]]; then
+    echo "installing cmake"
+    brew install cmake 
   fi
   git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/ycm.vim
   pushd ~/.vim/bundle/ycm.vim/
@@ -65,31 +71,34 @@ simlink() {
 	fi
 
 	ln -s $DIR/vimrc $HOME/.vimrc
-	ln -s $DIR/vimrc $HOME/.ideavimrc
+	ln -s $DIR/ideavimrc $HOME/.ideavimrc
 }
 
 usage() {
-	echo "link|colors|all|ycm|help"
+	echo "link|colors|all|ycm|plugins|help"
 }
 
 case $1 in
 "link")
-	simlink
+  simlink
 ;;
 "colors")
-	colors
+  colors
 ;;
 "ycm")
   install_ycm
 ;;
+"plugins")
+  install_plugins
+;;
 "all")
-	install_plugins
+  install_plugins
   install_ycm
-	simlink
-	colors
+  simlink
+  colors
 ;;
 *)
-	usage
+  usage
 ;;
 esac
 

@@ -9,6 +9,12 @@ let g:hybrid_custom_term_colors = 1
 execute pathogen#infect()
 filetype plugin indent on
 
+" show existing tab with 2 spaces width
+set tabstop=2
+" when indenting with '>', use 2 spaces width
+set shiftwidth=2 " On pressing tab, insert 2 spaces
+set expandtab
+
 " Rust
 if system("uname") == "Linux"
   let g:rust_clip_command = 'xclip -selection clipboard'
@@ -23,6 +29,8 @@ let b:surround_indent = 0
 " netrw
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
+
+" 0 - open files in the current window 
 " 1 - open files in a new horizontal split
 " 2 - open files in a new vertical split
 " 3 - open files in a new tab
@@ -53,3 +61,5 @@ map <silent> <C-E> :call ToggleVExplorer()<CR>
 " Change dir to the current buffer when opening files
 set autochdir
 
+" Spelling
+set nospell

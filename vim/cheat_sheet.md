@@ -34,6 +34,26 @@ b = previous word
 B = previous WORD
 w = next word
 W = next WORD
+
+{ = move paragraph back
+} = move paragraph forward
+( = move sentence back
+) = move sentence forward
+[[ = move section back
+]] = move section forward
+
+fc = move to next c
+Fc = mobe to previous c
+
+c-u = scroll up 1/2 page
+c-b = scroll up page
+c-f = scroll down page
+c-d = scroll down 1/2 page
+z-ret = scroll current line to top of page
+z. = scroll current line to the middle of the page
+5z. = scroll the 5th line to the middle of the page
+z- = scroll the current line to the bottom of the page
+5z- = scroll the 5th line to the bottom of the page
 ```
 
 # [netrw](https://shapeshed.com/vim-netrw/)
@@ -45,7 +65,7 @@ W = next WORD
 
 # Panes
 ```
-ctrl w
+c-w
 ```
 
 # Undo

@@ -1,8 +1,4 @@
-# Pasting
-```
-set paste
-set nopaste
-```
+
 
 # Line numbers
 ```
@@ -74,16 +70,21 @@ u = undo
 c-r = redo
 ```
 
-# Copy / Paste
+
+# Copy / Paste / [Registers](https://www.brianstorti.com/vim-registers/)
 ```
+set paste
+set nopaste
 y = yank
 d = cut
+p = paste
+"*yy = yank into global register (for pasting into other vim sessions)
+"*p = paste from global register
+"ay = yank into the a register
+"ap = paste from the a register 
+:reg = show registers and content
 ```
 
-# [Registers](https://www.brianstorti.com/vim-registers/)
-```
-:reg
-```
 
 # [Surround](https://github.com/tpope/vim-surround)
 ```

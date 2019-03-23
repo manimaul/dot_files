@@ -70,6 +70,12 @@ simlink() {
 	rm $HOME/.vimrc
 	fi
 
+  if [[ -e "$HOME/.ideavimrc" || -L "$HOME/.ideavimrc" ]]; then
+    echo "backing up ~/.ideavimrc"
+    cp $HOME/.ideavimrc $HOME/ideavimrc.bak
+    rm $HOME/.ideavimrc
+  fi
+
 	ln -s $DIR/vimrc $HOME/.vimrc
 	ln -s $DIR/ideavimrc $HOME/.ideavimrc
 }

@@ -1,5 +1,11 @@
 source $HOME/.ideavimrc
 
+" Turn on syntax highlighting
+syntax on
+
+" Show line numbers
+set number
+
 " https://github.com/w0ong/vim-hybrid
 colorscheme hybrid
 set background=dark

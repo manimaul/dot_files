@@ -38,7 +38,7 @@ install_ycm() {
   echo "installing ycm"
   if [[ "$OSTYPE" == "linux-gnu" ]]; then
     echo "installing vim-gtk3 for vim+python3"
-    sudo apt-get install vim-gtk3
+    sudo apt-get install vim-gtk3 cmake build-essential python3-dev
   fi
   if [[ "$OSTYPE" == darwin* ]]; then
     echo "installing cmake"
@@ -47,7 +47,7 @@ install_ycm() {
   git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/ycm.vim
   pushd ~/.vim/bundle/ycm.vim/
   git submodule update --init --recursive
-  python3 install.py --go-completer --rust-completer --clang-completer
+  python3 install.py --go-completer --rust-completer --clang-completer --java-completer
   popd
 }
 

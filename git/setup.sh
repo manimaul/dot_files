@@ -20,9 +20,11 @@ simlink() {
 	    fi
 	echo "deleting the ~/.gitconfig"
 	rm $HOME/.gitconfig
+	rm $HOME/.gitignore_global
 	fi
 
 	ln -s $DIR/gitconfig $HOME/.gitconfig
+	ln -s $DIR/gitignore_global $HOME/.gitignore_global
 }
 
 usage() {

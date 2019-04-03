@@ -37,6 +37,8 @@ W = next WORD
 ) = move sentence forward
 [[ = move section back
 ]] = move section forward
+c-] = jump to ctag
+c-o = jump back
 
 fc = move to next c
 Fc = mobe to previous c
@@ -52,16 +54,14 @@ z- = scroll the current line to the bottom of the page
 5z- = scroll the 5th line to the bottom of the page
 ```
 
-# [netrw](https://shapeshed.com/vim-netrw/)
+# NerdTree
 ```
-:Ex - explor in current window
-:Vex - explore in a vertical window
-:Sex - explore in a horizontal window
+c-e - toggle navigation panel
 ```
 
 # Panes
 ```
-c-w
+c-w - switch panes
 ```
 
 # Undo

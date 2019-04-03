@@ -28,7 +28,7 @@ install_plugins() {
   install_plugin https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim
   install_plugin https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive.vim
   install_plugin git://github.com/airblade/vim-gitgutter.git ~/.vim/bundle/vim-gitgutter.vim
-  install_plugin https://tpope.io/vim/surround.git ~/.vim/bundle/surround
+  install_plugin https://tpope.io/vim/surround.git ~/.vim/bundle/surround.vim
   install_plugin https://github.com/vim-syntastic/syntastic.git ~/.vim/bundle/syntastic.vim
   install_plugin https://github.com/majutsushi/tagbar.git ~/.vim/bundle/tagbar.vim
   install_plugin https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree.vim
@@ -53,12 +53,15 @@ dependencies() {
 }
 
 install_ycm() {
-  echo "installing ycm"
-  git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/ycm.vim
-  pushd ~/.vim/bundle/ycm.vim/
-  git submodule update --init --recursive
-  python3 install.py --go-completer --rust-completer --clang-completer --java-completer
-  popd
+  ycm_dir="${HOME}/.vim/bundle/ycm.vim"
+  if [[ ! -d ${ycm_dir} ]]; then
+    echo "installing $1"
+    git clone --depth=1 https://github.com/Valloric/YouCompleteMe.git ${ycm_dir}
+    pushd ${ycm_dir}
+    git submodule update --init --recursive
+    python3 install.py --go-completer --rust-completer --clang-completer --java-completer
+    popd
+  fi
 }
 
 colors() {

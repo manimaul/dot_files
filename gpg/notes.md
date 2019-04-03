@@ -32,6 +32,7 @@ gpg --encrypt /path/to/file/to/encrypt
 git config --global commit.gpgsign true
 gpg --list-secret-keys --keyid-format LONG manimaul@gmail.com 
 git config --global user.signingkey 369716D4576FF50F 
+export GPG_TTY=$(tty)
 ```
 
 

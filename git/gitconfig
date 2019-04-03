@@ -1,10 +1,15 @@
+[commit]
+	gpgsign = true
 [user]
-	name = manimaul
+	signingkey = 369716D4576FF50F
 	email = manimaul@gmail.com
-[core]
-	editor = vim
+	name = William Kamp 
 [alias]
-	ld = log --decorate
+  ld = log --decorate
+  st = status
+  ss = status --short
 	poh = push origin HEAD
 	puh = push upstream HEAD
+[core]
+	excludesFile = ~/.gitignore_global
 

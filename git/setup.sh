@@ -13,16 +13,20 @@ simlink() {
 	echo "symlinking gitconfig"
 	gitconfig="$HOME/.gitconfig"
 	if [[ -e "$gitconfig" || -L "$gitconfig" ]]; then
-	    if [ ! -L "$gitconfig" ];  then
-		echo "backing up ~/.gitconfig"
-		# not a symlink
-		cp $HOME/.gitconfig $/HOME.gitconfig.bak
-	    fi
-	echo "deleting the ~/.gitconfig"
-	rm $HOME/.gitconfig
+    if [ ! -L "$gitconfig" ];  then
+      echo "backing up ~/.gitconfig"
+      # not a symlink
+      cp $HOME/.gitconfig $/HOME.gitconfig.bak
+    fi
+    echo "deleting the ~/.gitconfig"
+    rm $HOME/.gitconfig
 	fi
 
+  if [[ -e $HOME/.gitignore_global ]]; then
+    rm $HOME/.gitignore_global
+  fi
 	ln -s $DIR/gitconfig $HOME/.gitconfig
+  ln -s $DIR/gitignore_global $HOME/.gitignore_global
 }
 
 usage() {

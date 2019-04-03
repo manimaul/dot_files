@@ -29,21 +29,31 @@ install_plugins() {
   install_plugin https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive.vim
   install_plugin git://github.com/airblade/vim-gitgutter.git ~/.vim/bundle/vim-gitgutter.vim
   install_plugin https://tpope.io/vim/surround.git ~/.vim/bundle/surround
+  install_plugin https://github.com/vim-syntastic/syntastic.git ~/.vim/bundle/syntastic.vim
+  install_plugin https://github.com/majutsushi/tagbar.git ~/.vim/bundle/tagbar.vim
+  install_plugin https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree.vim
 
-  # todo: syntastic https://github.com/vim-syntastic/syntastic
-  # todo: nerdtree   https://github.com/vim-syntastic/syntastic
+}
+
+dependencies() {
+  if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    sudo apt-get install -y vim-gtk3 cmake ctags build-essential
+  fi
+  if [[ "$OSTYPE" == darwin* ]]; then
+    packages=(cmake ctags)
+    for package in ${packages[@]}; do
+      if brew ls --versions $package > /dev/null; then
+        echo "${package} already installed"
+      else
+        echo "installing ${package}"
+        brew install ${package}
+      fi
+    done 
+  fi
 }
 
 install_ycm() {
   echo "installing ycm"
-  if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    echo "installing vim-gtk3 for vim+python3"
-    sudo apt-get install vim-gtk3
-  fi
-  if [[ "$OSTYPE" == darwin* ]]; then
-    echo "installing cmake"
-    brew install cmake 
-  fi
   git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/ycm.vim
   pushd ~/.vim/bundle/ycm.vim/
   git submodule update --init --recursive
@@ -95,9 +105,11 @@ case $1 in
   install_ycm
 ;;
 "plugins")
+  dependencies
   install_plugins
 ;;
 "all")
+  dependencies
   install_plugins
   install_ycm
   simlink

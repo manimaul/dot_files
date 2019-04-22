@@ -32,7 +32,7 @@ install_plugins() {
   install_plugin https://github.com/vim-syntastic/syntastic.git ~/.vim/bundle/syntastic.vim
   install_plugin https://github.com/majutsushi/tagbar.git ~/.vim/bundle/tagbar.vim
   install_plugin https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree.vim
-
+  install_plugin https://github.com/ctrlpvim/ctrlp.vim.git ~/.vim/bundle/ctrlp.vim
 }
 
 dependencies() {

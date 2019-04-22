@@ -35,9 +35,13 @@ let b:surround_indent = 0
 
 " NerdTree
 map <C-E> :NERDTreeToggle<CR>
+map <C-L> :NERDTreeFind<CR>
+
 " Close window if only NT is open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Ctrlp
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Spelling
 set nospell

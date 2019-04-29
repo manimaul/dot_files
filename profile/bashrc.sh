@@ -45,3 +45,5 @@ source $HOME/.cargo/env
 source <(kubectl completion bash)
 alias kc=kubectl
 
+# Bash history ignore leading space
+export HISTCONTROL=ignorespace

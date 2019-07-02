@@ -17,5 +17,9 @@ source $HOME/.cargo/env
 source <(kubectl completion bash)
 alias kc=kubectl
 
+# VirtualEnvWrapper
+source ${HOME}/.local/bin/virtualenvwrapper.sh
+
 # Bash history ignore leading space
 export HISTCONTROL=ignorespace
+

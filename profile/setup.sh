@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 type lsvirtualenv >/dev/null 2>&1 || { 
   echo "installing virtualenvwrapper"
   pip install virtualenvwrapper
@@ -21,7 +23,7 @@ type kubectl >/dev/null 2>&1 || {
   chmod +x ~/.local/bin/kubectl
 }
 
-src="source ~/source/manimaul/dot_files/profile/bashrc.sh"
+src="source ${DIR}/bashrc.sh"
 file=${HOME}/.bashrc
 if grep -q "$src" "$file"
   then

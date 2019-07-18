@@ -23,3 +23,6 @@ source ${HOME}/.local/bin/virtualenvwrapper.sh
 # Bash history ignore leading space
 export HISTCONTROL=ignorespace
 
+# Git
+alias ngit="rm ~/.gitconfig && ln -s ~/.gitconfig.work ~/.gitconfig && git config --global --list"
+alias mgit="rm ~/.gitconfig && ln -s ~/.gitconfig.me ~/.gitconfig && git config --global --list"

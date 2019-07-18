@@ -37,7 +37,7 @@ install_plugins() {
 
 dependencies() {
   if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    sudo apt-get install -y vim-gtk3 cmake build-essential python3-dev ctags
+    sudo apt-get install -y vim-gtk3 cmake build-essential python3-dev ctags golang-go default-jdk-headless
   fi
   if [[ "$OSTYPE" == darwin* ]]; then
     packages=(cmake ctags)
@@ -105,6 +105,7 @@ case $1 in
   colors
 ;;
 "ycm")
+  dependencies
   install_ycm
 ;;
 "plugins")

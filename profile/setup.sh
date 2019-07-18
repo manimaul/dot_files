@@ -7,7 +7,7 @@ sudo apt install -y curl
 
 type lsvirtualenv >/dev/null 2>&1 || { 
   echo "installing virtualenvwrapper"
-  sudo apt isntall -y python-pip
+  sudo apt install -y python-pip
   pip install virtualenvwrapper
 }
 

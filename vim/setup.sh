@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
 SOURCE="${BASH_SOURCE[0]}"
-while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+while [[ -h "$SOURCE" ]]; do # resolve $SOURCE until the file is no longer a symlink
   DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
   SOURCE="$(readlink "$SOURCE")"
-  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+  [[ ${SOURCE} != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
 install_plugin() {
   plugin_repo=$1
   plugin_dir=$2
-  if [[ ! -d $plugin_dir ]]; then
+  if [[ ! -d ${plugin_dir} ]]; then
     echo "installing $1"
-    git clone --depth=1 $plugin_repo $plugin_dir
+    git clone --depth=1 ${plugin_repo} ${plugin_dir}
   fi
 }
 
@@ -33,11 +33,12 @@ install_plugins() {
   install_plugin https://github.com/majutsushi/tagbar.git ~/.vim/bundle/tagbar.vim
   install_plugin https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree.vim
   install_plugin https://github.com/ctrlpvim/ctrlp.vim.git ~/.vim/bundle/ctrlp.vim
+  install_plugin https://github.com/udalov/kotlin-vim ~/.vim/bundle/kotlin-vim
 }
 
 dependencies() {
   if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    sudo apt-get install -y vim-gtk3 cmake build-essential python3-dev ctags golang-go default-jdk-headless
+    sudo apt-get install -y vim-gtk3 cmake build-essential python3-dev ctags default-jdk-headless
   fi
   if [[ "$OSTYPE" == darwin* ]]; then
     packages=(cmake ctags)
@@ -59,7 +60,7 @@ install_ycm() {
     git clone --depth=1 https://github.com/Valloric/YouCompleteMe.git ${ycm_dir}
     pushd ${ycm_dir}
     git submodule update --init --recursive
-    python3 install.py --go-completer --rust-completer --clang-completer --java-completer
+    python3 install.py --rust-completer --clang-completer --java-completer
     popd
   fi
 }
@@ -72,25 +73,25 @@ colors() {
 
 simlink() {
 	echo "symlinking .vimrc"
-	vimrc="$HOME/.vimrc"
-	if [[ -e "$vimrc" || -L "$vimrc" ]]; then
-	    if [ ! -L "$vimrc" ];  then
+	vim_rc="${HOME}/.vimrc"
+	if [[ -e "$vim_rc" || -L "$vim_rc" ]]; then
+	    if [[ ! -L "$vim_rc" ]];  then
 		echo "backing up ~/.vimrc"
 		# not a symlink
-		cp $HOME/.vimrc $/HOME.vimrc.bak
+		cp ${HOME}/.vimrc ${HOME}.vimrc.bak
 	    fi
 	echo "deleting the ~/.vimrc"
-	rm $HOME/.vimrc
+	rm ${HOME}/.vimrc
 	fi
 
-  if [[ -e "$HOME/.ideavimrc" || -L "$HOME/.ideavimrc" ]]; then
+  if [[ -e "${HOME}/.ideavimrc" || -L "${HOME}/.ideavimrc" ]]; then
     echo "backing up ~/.ideavimrc"
-    cp $HOME/.ideavimrc $HOME/ideavimrc.bak
-    rm $HOME/.ideavimrc
+    cp ${HOME}/.ideavimrc ${HOME}/ideavimrc.bak
+    rm ${HOME}/.ideavimrc
   fi
 
-	ln -s $DIR/vimrc $HOME/.vimrc
-	ln -s $DIR/ideavimrc $HOME/.ideavimrc
+	ln -s ${DIR}/vimrc ${HOME}/.vimrc
+	ln -s ${DIR}/ideavimrc ${HOME}/.ideavimrc
 }
 
 usage() {

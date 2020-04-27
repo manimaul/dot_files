@@ -1,15 +1,67 @@
 [commit]
-	gpgsign = true
+  gpgsign = true
+
 [user]
-	signingkey = 369716D4576FF50F
-	email = manimaul@gmail.com
-	name = William Kamp 
+  signingkey = 369716D4576FF50F
+  email = manimaul@gmail.com
+  name = William Kamp
+
 [alias]
-  ld = log --decorate
+  ld = log --decorate --graph
+  fom = fetch origin master:master
   st = status
   ss = status --short
-	poh = push origin HEAD
-	puh = push upstream HEAD
-[core]
-	excludesFile = ~/.gitignore_global
+  poh = push origin HEAD
+  puh = push upstream HEAD
+  co = checkout
+  br = !git --no-pager branch
+  d = !git diff --name-status $(git merge-base --fork-point master)..HEAD
+  dd = !git diff $(git merge-base --fork-point master)..HEAD
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  tip = rev-parse HEAD
+  l = log HEAD --not master --no-merges
 
+[core]
+  excludesFile = ~/.gitignore_global
+  precomposeunicode = true
+  sparseCheckout = true
+
+[push]
+  default = current
+
+[rerere]
+  enabled = true
+
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[merge]
+  tool = intellij
+
+[mergetool "intellij"]
+  cmd = idea merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+  trustExitCode = true
+
+[diff]
+  tool = intellij
+
+[difftool "intellij"]
+  cmd = idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")

@@ -25,6 +25,7 @@
   excludesFile = ~/.gitignore_global
   precomposeunicode = true
   sparseCheckout = true
+  autocrlf = input
 
 [push]
   default = current

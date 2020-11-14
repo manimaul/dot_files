@@ -7,7 +7,6 @@ parse_git_branch() {
 }
 export PS1="\[${bold}\]will.kamp ::: \[$reset\][\w\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" -\")\$(parse_git_branch)] \$ \[$reset\]"
 export GREP_OPTIONS='--color=auto'
-
 # Bash history ignore leading space
 export HISTCONTROL=ignorespace
 
@@ -19,7 +18,8 @@ export ANDROID_HOME=${ANDROID_SDK_ROOT}
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 export PATH=${ANDROID_HOME}/emulator:${PATH}
-export ANDROID_NDK="${ANDROID_HOME}/ndk/21.0.6113669"
+export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
+export ANDROID_NDK="${ANDROID_HOME}/ndk/21.1.6352462"
 
 findtxt() {
   find $1 -type f -print | xargs grep "$2"
@@ -64,7 +64,28 @@ alias vidiff="vim \`git diff --name-status master | rev | awk1 | rev\`"
 jdk() {
   version=$1
   export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
+  export JAVADOC="${JAVA_HOME}/bin/javadoc"
+  export JAVAC="${JAVA_HOME}/bin/javac"
+  export JAVA="${JAVA_HOME}/bin/java"
+  export JAR="${JAVA_HOME}/bin/jar"
+  export JAVA_INCLUDE="-I${JAVA_HOME}/include -I${JAVA_HOME}/include/darwin"
   java -version
 }
 
-jdk "1.8"
+# jdk "1.8"
+alias jdk8='jdk 1.8'
+alias jdk11='jdk 11'
+
+jdk8
+
+#export VIRTUALENVWRAPPER_PYTHON="/usr/local/lib/python3.8/"
+#export PATH="$VIRTUALENVWRAPPER_PYTHON/bin:$PATH"
+#source /usr/local/bin/virtualenvwrapper.sh
+
+export KUBECONFIG=$HOME/Documents/WKCluster01/WKCluster01-kubeconfig.yaml
+
+source $HOME/.cargo/env
+
+# gdal
+# brew install osgeo/osgeo4mac/osgeo-gdal
+export GDAL_DRIVER_PATH=/usr/local/lib/gdalplugins

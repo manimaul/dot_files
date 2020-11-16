@@ -18,7 +18,7 @@ export ANDROID_HOME=${ANDROID_SDK_ROOT}
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 export PATH=${ANDROID_HOME}/emulator:${PATH}
-export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
+export PATH="${HOME}/.local/bin:/usr/local/sbin:/usr/local/bin:$PATH"
 export ANDROID_NDK="${ANDROID_HOME}/ndk/21.1.6352462"
 
 findtxt() {
@@ -74,7 +74,6 @@ jdk() {
 
 # jdk "1.8"
 alias jdk8='jdk 1.8'
-alias jdk11='jdk 11'
 
 jdk8
 
@@ -89,3 +88,6 @@ source $HOME/.cargo/env
 # gdal
 # brew install osgeo/osgeo4mac/osgeo-gdal
 export GDAL_DRIVER_PATH=/usr/local/lib/gdalplugins
+
+# linkerd
+export PATH=$PATH:/Users/williamkamp/.linkerd2/bin
